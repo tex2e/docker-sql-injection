@@ -1,0 +1,32 @@
+
+version: "3.9"
+
+services:
+
+  web:
+    build: .
+    ports:
+      - "5080:80"
+    volumes:
+      - ./html:/var/www/html
+    networks:
+      - n0
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sample
+      - MYSQL_USER=devuser
+      - MYSQL_PASSWORD=devpass
+    networks:
+      - n0
+
+
+networks:
+  n0:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.10.0/24
