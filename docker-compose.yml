@@ -1,5 +1,5 @@
 
-version: "3.9"
+version: "3.3"
 
 services:
 
@@ -15,10 +15,24 @@ services:
   mysql:
     image: mysql:5.7
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=toor
       - MYSQL_DATABASE=sample
       - MYSQL_USER=devuser
       - MYSQL_PASSWORD=devpass
+    volumes:
+      - ./sql/mysql_init_db.sql:/tmp/initdb.d/mysql_init_db.sql
+      - ./sh/mysql_init_db.sh:/docker-entrypoint-initdb.d/mysql_init_db.sh
+    networks:
+      - n0
+
+  pgsql:
+    image: postgres:11
+    environment:
+      # User: postgres
+      POSTGRES_PASSWORD: devpass
+    volumes:
+      - ./sql/pgsql_init_db.sql:/tmp/initdb.d/pgsql_init_db.sql
+      - ./sh/pgsql_init_db.sh:/docker-entrypoint-initdb.d/pgsql_init_db.sh
     networks:
       - n0
 

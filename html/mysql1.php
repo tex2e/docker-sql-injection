@@ -1,4 +1,9 @@
 <h2>SQLi with MySQL</h2>
+
+<p>
+  SELECT * FROM users WHERE id = ?
+</p>
+
 <?php
   try {
     $records = [];
@@ -24,7 +29,7 @@
   }
 ?>
 
-<form method="post" action="index.php">
+<form method="post">
   <input type="id" name="id">
   <input type="submit" value="送信">
 </form>
