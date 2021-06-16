@@ -1,7 +1,7 @@
 <h2>SQLi with MySQL</h2>
 
 <p>
-  SELECT * FROM users WHERE id = ?
+  SELECT * FROM users WHERE id = ?;
 </p>
 
 <?php
@@ -18,7 +18,7 @@
       $prepare = $pdo->prepare('SELECT * FROM users WHERE id = ' . $id . ';');
       $prepare->execute();
       $records = $prepare->fetchAll(PDO::FETCH_ASSOC);
-      
+
       foreach ($records as $record) {
         echo "name = " . $record['name'].PHP_EOL;
       }

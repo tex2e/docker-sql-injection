@@ -1,21 +1,21 @@
-<h2>SQLi with PostgreSQL</h2>
+<h2>SQLi with MySQL</h2>
 
 <p>
-  SELECT * FROM users WHERE id = ?;
+  SELECT * FROM users WHERE (name LIKE '%?%');
 </p>
 
 <?php
   try {
     $records = [];
-    if (isset($_POST['id'])) {
-      $id = $_POST['id'];
+    if (isset($_POST['name'])) {
+      $name = $_POST['name'];
 
       $pdo = new PDO(
-        'pgsql:host=pgsql;dbname=sample',
-        'postgres',
+        'mysql:host=mysql;dbname=sample',
+        'devuser',
         'devpass'
       );
-      $prepare = $pdo->prepare('SELECT * FROM users WHERE id = ' . $id . ';');
+      $prepare = $pdo->prepare("SELECT * FROM users WHERE (name LIKE '%" . $name . "%');");
       $prepare->execute();
       $records = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
@@ -30,6 +30,6 @@
 ?>
 
 <form method="post">
-  <input type="id" name="id">
+  <input type="name" name="name">
   <input type="submit" value="送信">
 </form>
