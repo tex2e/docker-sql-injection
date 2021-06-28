@@ -2,7 +2,7 @@
 
 <span>検索クエリ：</span>
 <p>
-  SELECT * FROM users WHERE (name LIKE '%?%');
+  SELECT * FROM users WHERE ((name LIKE '%?%') and (LENGTH(name) >= 2)) order by id;
 </p>
 
 <?php
@@ -16,7 +16,7 @@
         'devuser',
         'devpass'
       );
-      $prepare = $pdo->prepare("SELECT * FROM users WHERE (name LIKE '%" . $name . "%');");
+      $prepare = $pdo->prepare("SELECT * FROM users WHERE ((name LIKE '%" . $name . "%') and (LENGTH(name) >= 2)) order by id;");
       $prepare->execute();
       $records = $prepare->fetchAll(PDO::FETCH_ASSOC);
 

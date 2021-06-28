@@ -6,7 +6,7 @@ services:
   web:
     build: .
     ports:
-      - "8002:80"
+      - "8100:80"
     volumes:
       - ./html:/var/www/html
     networks:

@@ -1,5 +1,6 @@
-<h2>SQLi with MySQL</h2>
+<h2>SQLi in MySQL</h2>
 
+<span>検索クエリ：</span>
 <p>
   SELECT * FROM users WHERE id = ?;
 </p>
@@ -20,7 +21,7 @@
       $records = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
       foreach ($records as $record) {
-        echo "name = " . $record['name'].PHP_EOL;
+        echo "name = " . $record['name'].PHP_EOL . "<br>";
       }
     }
   } catch (PDOException $e) {
@@ -30,6 +31,6 @@
 ?>
 
 <form method="post">
-  <input type="id" name="id">
+  <input type="id" name="id" value="1">
   <input type="submit" value="送信">
 </form>
