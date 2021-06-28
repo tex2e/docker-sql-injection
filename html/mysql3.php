@@ -8,8 +8,8 @@
 <?php
   try {
     $records = [];
-    if (isset($_POST['name'])) {
-      $name = $_POST['name'];
+    if (isset($_GET['name'])) {
+      $name = $_GET['name'];
 
       $pdo = new PDO(
         'mysql:host=mysql;dbname=sample',
@@ -30,7 +30,7 @@
   }
 ?>
 
-<form method="post">
+<form method="get">
   <input type="name" name="name" value="Alice">
   <input type="submit" value="送信">
 </form>
